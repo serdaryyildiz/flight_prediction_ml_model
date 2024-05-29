@@ -25,7 +25,7 @@ X_test = scaler.transform(X_test)
 
 X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.2, random_state=1)
 
-mlp = MLPClassifier(hidden_layer_sizes=(32,16), activation='relu', solver='adam', max_iter=300,alpha=0.001 , random_state=42, early_stopping=True,
+mlp = MLPClassifier(hidden_layer_sizes=(16,8), activation='relu', solver='adam', max_iter=300,alpha=0.001 , random_state=42, early_stopping=True,
                     n_iter_no_change=10 , validation_fraction=0.1)
 #Alpha = 0.001 = L2 Regularization
 history = mlp.fit(X_train, y_train)
@@ -64,8 +64,8 @@ classification_rep_val = classification_report(y_val, y_pred_val)
 
 print(f'Test Accuracy: {test_accuracy}')
 print(f'Test Loss: {test_loss}')
-print("\t\tClassification Report :  \n", classification_rep)
+print("\n\t\tClassification Report :  \n", classification_rep)
 
 print(f'Validation Accuracy: {val_accuracy}')
 print(f'Validation Loss: {val_loss}')
-print("\t\tClassification Report for Validation Set:  \n", classification_rep_val)
+print("\n\t\tClassification Report for Validation Set:  \n", classification_rep_val)
