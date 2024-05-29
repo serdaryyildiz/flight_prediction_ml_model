@@ -57,7 +57,7 @@ weighted avg       0.99      0.99      0.99      9195
  The model performed well in validation tests, providing promising results. However, the predictive ability of the model could be further enhanced by using more data. We find the study promising, as it can be developed into a feasible and applicable real-world project with additional data and work.
 
 
-###References
-•	https://www.kaggle.com/datasets/patrickzel/flight-delay-and-cancellation-dataset-2019-2023?select=flights_sample_3m.csv
-•	https://www.wunderground.com/history
-•	https://www.geeksforgeeks.org/classification-using-sklearn-multi-layer-perceptron/
+### References
+•	https://www.kaggle.com/datasets/patrickzel/flight-delay-and-cancellation-dataset-2019-2023?select=flights_sample_3m.csv <br />
+•	https://www.wunderground.com/history <br />
+•	https://www.geeksforgeeks.org/classification-using-sklearn-multi-layer-perceptron/ <br />
