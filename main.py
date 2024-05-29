@@ -34,7 +34,6 @@ y_pred = mlp.predict(X_test)
 test_accuracy = accuracy_score(y_test, y_pred)
 test_loss = log_loss(y_test, mlp.predict_proba(X_test))
 
-# Validation seti ile tahmin yapma
 y_pred_val = mlp.predict(X_val)
 val_accuracy = accuracy_score(y_val, y_pred_val)
 val_loss = log_loss(y_val, mlp.predict_proba(X_val))
