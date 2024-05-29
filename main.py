@@ -4,14 +4,18 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
-from sklearn.metrics import accuracy_score, log_loss
+from sklearn.metrics import accuracy_score, log_loss , classification_report
+from sklearn.utils.class_weight import compute_class_weight
 
-df = pd.read_csv("C:/Users/serda/data_with_forecast.csv")
+df = pd.read_csv("./data.csv")
 data = pd.DataFrame(df)
 
 X_categories = data.drop(["FL_DATE", "DOT_CODE", "FL_NUMBER"], axis=1)
 x = pd.get_dummies(X_categories, drop_first=True)
 y = data["CANCELLED"]
+
+important_features = x.iloc[:, 26:]
+x = pd.concat([x, important_features, important_features], axis=1)
 
 X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=1)
 
@@ -21,14 +25,19 @@ X_test = scaler.transform(X_test)
 
 X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.2, random_state=1)
 
-mlp = MLPClassifier(hidden_layer_sizes=(64, 32), activation='relu', solver='adam', alpha=0.01, batch_size=32,
-                    learning_rate_init=0.001, max_iter=50, random_state=1, early_stopping=True, n_iter_no_change=3)
-
+mlp = MLPClassifier(hidden_layer_sizes=(32,16), activation='relu', solver='adam', max_iter=300,alpha=0.001 , random_state=42, early_stopping=True,
+                    n_iter_no_change=10 , validation_fraction=0.1)
+#Alpha = 0.001 = L2 Regularization
 history = mlp.fit(X_train, y_train)
 
 y_pred = mlp.predict(X_test)
 test_accuracy = accuracy_score(y_test, y_pred)
 test_loss = log_loss(y_test, mlp.predict_proba(X_test))
+
+# Validation seti ile tahmin yapma
+y_pred_val = mlp.predict(X_val)
+val_accuracy = accuracy_score(y_val, y_pred_val)
+val_loss = log_loss(y_val, mlp.predict_proba(X_val))
 
 training_loss = history.loss_curve_
 training_accuracy = history.validation_scores_
@@ -51,5 +60,13 @@ plt.ylabel('Loss')
 plt.legend()
 plt.show()
 
+classification_rep = classification_report(y_test, y_pred)
+classification_rep_val = classification_report(y_val, y_pred_val)
+
 print(f'Test Accuracy: {test_accuracy}')
 print(f'Test Loss: {test_loss}')
+print("\t\tClassification Report :  \n", classification_rep)
+
+print(f'Validation Accuracy: {val_accuracy}')
+print(f'Validation Loss: {val_loss}')
+print("\t\tClassification Report for Validation Set:  \n", classification_rep_val)
