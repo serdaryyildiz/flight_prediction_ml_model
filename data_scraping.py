@@ -9,7 +9,7 @@ import os
 
 for_loop_counter = 1
 
-csv_path = "./full_data.csv"
+csv_path = "./unscraped_data.csv"
 csv_output_path = "./data.csv"
 
 df = pd.read_csv(csv_path)
