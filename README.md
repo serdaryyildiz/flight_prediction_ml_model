@@ -5,7 +5,7 @@ Selman OLGUN : https://github.com/selmanolgun**
 # Project Report
 
 ### Motivation
-*Flying is an essential mode of transportation for millions of people worldwide. However, flight cancellations disrupt travel plans, causing inconvenience and frustration for passengers. Identifying the factors that lead to flight cancellations and predicting them in advance can greatly benefit both airlines and passengers. Our goal is to develop a model that accurately predicts the likelihood of flight cancellations. *
+Flying is an essential mode of transportation for millions of people worldwide. However, flight cancellations disrupt travel plans, causing inconvenience and frustration for passengers. Identifying the factors that lead to flight cancellations and predicting them in advance can greatly benefit both airlines and passengers. Our goal is to develop a model that accurately predicts the likelihood of flight cancellations.
 
 ### Methods
 Data Collection 
